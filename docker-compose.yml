@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  backend-a:
+    build:
+      context: ./
+      dockerfile: Dockerfile-a
+    container_name: backend-a
+    restart: always
+    ports:
+      - "3001:3000"
+
+  backend-b:
+    build:
+      context: ./
+      dockerfile: Dockerfile-b
+    container_name: backend-b
+    restart: always
+    ports:
+      - "3002:3000"
