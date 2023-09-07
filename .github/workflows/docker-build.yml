@@ -62,7 +62,7 @@ jobs:
     - name: Deploy
       uses: WyriHaximus/github-action-helm3@v3
       with:
-          exec: helm upgrade tbsi-demo-test-a-chart . -n tbsi
-          # exec: helm upgrade tbsi-demo-test-a-chart /home/runner/work/tbsi-demo-test/tbsi-demo-test/tbsi-demo-test-a-chart/ --install --namespace=tbsi --values=/home/runner/work/tbsi-demo-test/tbsi-demo-test/tbsi-demo-test-a-chart/values.yaml
+          # exec: helm upgrade tbsi-demo-test-a-chart . -n tbsi
+          exec: helm upgrade tbsi-demo-test-a-chart /home/runner/work/tbsi-demo-test/tbsi-demo-test/tbsi-demo-test-a-chart/ --install --namespace=tbsi --values=/home/runner/work/tbsi-demo-test/tbsi-demo-test/tbsi-demo-test-a-chart/values.yaml
           kubeconfig: '${{ secrets.KUBE_CONFIG }}'
 # Action:
