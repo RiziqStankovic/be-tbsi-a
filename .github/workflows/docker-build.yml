@@ -29,7 +29,14 @@ jobs:
         file: ./Dockerfile-a
         # platforms: linux/amd64,linux/arm64
         push: true
-        tags: ${{ secrets.DOCKER_USERNAME }}/backend-a:${{ github.sha }}
+        # tags: ${{ secrets.DOCKER_USERNAME }}/backend-a:${{ github.sha }}
+        # tags: ${{ secrets.DOCKER_USERNAME }}/backend-a:latest
+        tags: |
+          ${{ secrets.DOCKER_USERNAME }}:latest
+          ${{ secrets.DOCKER_USERNAME }}:v1.0.-${{ github.run_number }}
+        build-args: |
+          git_sha=${{ github.sha }}        
+
 
     - name: Create release tag
       # if: github.ref == 'refs/heads/staging'
@@ -44,7 +51,7 @@ jobs:
           Author: ${{ github.actor }}
           Commit Message: ${{ github.event.head_commit.message }}
         prerelease: true
-   
+
   Deploy:
     name: Deploy-on-kube
     needs: Docker_Build_and_Push

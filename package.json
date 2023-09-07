@@ -4,7 +4,7 @@
   "description": "Test DevOps at Body Shop Indonesia",
   "main": "backend-a.js",
   "scripts": {
-    "test": "npx mocha --exit ./test/test_be-a.js && npx mocha --exit ./test/test_be-b.js"
+    "test": "npx mocha --exit ./test/test_be-a.js"
   },
   "repository": {
     "type": "git",

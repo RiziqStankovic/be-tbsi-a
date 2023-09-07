@@ -2,11 +2,11 @@ appName: tbsi-demo-test-a-app
 
 image:
   pullPolicy: Always
-  pullSecret: docker-hub-private
-  repository: arahmane/backend-a:v1.0.0 #modif from workflow
+  # pullSecret: docker-hub-private
+  repository: arahmane/backend-a:latest #modif from workflow
 
 hpa:
-  name: tbsi-demo-test-a-hpa
+  name: tbsi-demo-test-a-app
   max: 3
   min: 1
   targetCPU: 60
@@ -14,8 +14,7 @@ hpa:
 ingress:
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    # cert-manager.io/cluster-issuer: letsencrypt-prod
-  name: tbsi-demo-test-a-ingress
+  name: tbsi-demo-test-a-app
   host: backend-a.slimebox.my.id
 
 namespace: tbsi
@@ -23,20 +22,20 @@ namespace: tbsi
 resources:
   requests:
     cpu: 50m
-    memory: 128Mi
+    memory: 50Mi
 
 secret:
-  vmountName: secret-tbsi-demo-test-a
+  vmountName: tbsi-demo-test-a-app
   vmountPath: /.env
-  volumeName: secret-tbsi-demo-test-a
+  volumeName: tbsi-demo-test-a-app
   secretName: env-tbsi-demo-test-a
 
 restartPolicy: Always
 
-service:
+service: 
   externalPort: 3001
   internalPort: 3001
-  name: tbsi-demo-test-a-service
+  name: tbsi-demo-test-a-app
   port: 3001
   protocol: TCP
   type: ClusterIP
@@ -45,6 +44,3 @@ strategy:
   surge: 1
   type: RollingUpdate
   unavailable: 25%
-
-# email: abdulrahmaneffendi789@gmail.com
-# secretName: tbsi-demo-test-cert

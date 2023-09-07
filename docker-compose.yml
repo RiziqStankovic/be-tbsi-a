@@ -9,12 +9,3 @@ services:
     restart: always
     ports:
       - "3001:3001"
-
-  # backend-b:
-  #   build:
-  #     context: ./
-  #     dockerfile: Dockerfile-b
-  #   container_name: backend-b
-  #   restart: always
-  #   ports:
-  #     - "3002:3000"

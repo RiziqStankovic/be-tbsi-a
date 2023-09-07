@@ -30,8 +30,8 @@ spec:
         - containerPort: {{ .Values.service.port }}
         resources:
           {{- toYaml .Values.resources | nindent 12 }}
-      imagePullSecrets:
-      - name: {{ .Values.image.pullSecret }}
+      # imagePullSecrets:
+      # - name: {{ .Values.image.pullSecret }}
       volumes:
       - name: {{ .Values.secret.volumeName }}
         secret:
