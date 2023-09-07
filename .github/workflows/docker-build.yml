@@ -1,0 +1,66 @@
+name: Build & Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  DockerBuild:
+    environment: development
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Connect to DockerHub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+      #version 4
+    - name: Build and Push registry Backend-A
+      # if: github.ref == 'refs/heads/staging'
+      uses: docker/build-push-action@v4 #version 4
+      with:
+        context: .
+        file: ./Dockerfile-a
+        # platforms: linux/amd64,linux/arm64
+        push: true
+        tags: ${{ secrets.DOCKER_USERNAME }}/backend-a:${{ github.sha }}
+
+    - name: Create release tag
+      # if: github.ref == 'refs/heads/staging'
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
+      with:
+        tag_name: development-${{ github.run_number }}
+        release_name: Release development-${{ github.run_number }}
+        body: |
+          Commit: ${{ github.sha }}
+          Author: ${{ github.actor }}
+          Commit Message: ${{ github.event.head_commit.message }}
+        prerelease: true
+
+  Deploy:
+      name: Deploy-on-kube
+      needs: Build-Push
+      runs-on: ubuntu-latest
+      steps:
+      - uses: actions/checkout@v3        
+      - name: Set up kubectl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+          version: "latest"
+      - name: Save DigitalOcean kubeconfig with short-lived credentials
+        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.KUBE_CONFIG }}
+      - uses: actions/checkout@v3
+      - name: Deploy
+        uses: WyriHaximus/github-action-helm3@v3
+        with:
+            exec: helm upgrade pwa /home/runner/work/test-pwa-compose/test-pwa-compose/pwa/ --install --namespace=tbsi --values=/home/runner/work/test-pwa-compose/test-pwa-compose/pwa/values.yaml
+            kubeconfig: '${{ secrets.KUBE_CONFIG }}'
+  # Action:
