@@ -46,5 +46,5 @@ strategy:
   type: RollingUpdate
   unavailable: 25%
 
-email: abdulrahmaneffendi789gmail.com
-secretName: my-devops-office-cert
+email: abdulrahmaneffendi789@gmail.com
+secretName: tbsi-demo-test-cert
