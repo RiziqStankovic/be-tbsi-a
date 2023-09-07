@@ -25,11 +25,11 @@ resources:
     cpu: 50m
     memory: 128Mi
 
-secret:
-  vmountName: secret-tbsi-demo-test-a
-  vmountPath: /.env
-  volumeName: secret-tbsi-demo-test-a
-  secretName: env-tbsi-demo-test-a
+# secret:
+#   vmountName: secret-tbsi-demo-test-a
+#   vmountPath: /.env
+#   volumeName: secret-tbsi-demo-test-a
+#   secretName: env-tbsi-demo-test-a
 
 restartPolicy: Always
 
