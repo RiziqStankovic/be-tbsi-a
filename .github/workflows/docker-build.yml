@@ -46,7 +46,7 @@ jobs:
 
   Deploy:
       name: Deploy-on-kube
-      needs: Build-Push
+      needs: DockerBuild
       runs-on: ubuntu-latest
       steps:
       - uses: actions/checkout@v3        
