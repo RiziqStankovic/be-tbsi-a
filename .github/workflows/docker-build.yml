@@ -5,7 +5,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  DockerBuild:
+  Build_Push:
+    name: Docker_Build_and_Push
     environment: development
     runs-on: ubuntu-latest
 
@@ -43,24 +44,24 @@ jobs:
           Author: ${{ github.actor }}
           Commit Message: ${{ github.event.head_commit.message }}
         prerelease: true
-
+   
   Deploy:
-      name: Deploy-on-kube
-      needs: DockerBuild
-      runs-on: ubuntu-latest
-      steps:
-      - uses: actions/checkout@v3        
-      - name: Set up kubectl
-        uses: digitalocean/action-doctl@v2
-        with:
-          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
-          version: "latest"
-      - name: Save DigitalOcean kubeconfig with short-lived credentials
-        run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.KUBE_CONFIG }}
-      - uses: actions/checkout@v3
-      - name: Deploy
-        uses: WyriHaximus/github-action-helm3@v3
-        with:
-            exec: helm upgrade pwa /home/runner/work/test-pwa-compose/test-pwa-compose/pwa/ --install --namespace=tbsi --values=/home/runner/work/test-pwa-compose/test-pwa-compose/pwa/values.yaml
-            kubeconfig: '${{ secrets.KUBE_CONFIG }}'
-  # Action:
+    name: Deploy-on-kube
+    needs: Docker_Build_and_Push
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3        
+    - name: Set up kubectl
+      uses: digitalocean/action-doctl@v2
+      with:
+        token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+        version: "latest"
+    - name: Save DigitalOcean kubeconfig with short-lived credentials
+      run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.KUBE_CONFIG }}
+    - uses: actions/checkout@v3
+    - name: Deploy
+      uses: WyriHaximus/github-action-helm3@v3
+      with:
+          exec: helm upgrade pwa /home/runner/work/test-pwa-compose/test-pwa-compose/pwa/ --install --namespace=tbsi --values=/home/runner/work/test-pwa-compose/test-pwa-compose/pwa/values.yaml
+          kubeconfig: '${{ secrets.KUBE_CONFIG }}'
+# Action:
