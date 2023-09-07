@@ -12,4 +12,5 @@ spec:
     targetPort: {{ .Values.service.internalPort }}
   selector:
     app: {{ .Values.service.name }}
-  
+
+   
