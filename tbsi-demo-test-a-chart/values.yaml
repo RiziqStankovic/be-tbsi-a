@@ -26,10 +26,10 @@ resources:
     memory: 128Mi
 
 secret:
-  vmountName: secret-web-pwa-olin
-  # vmountPath: /.env
-  # volumeName: secret-web-pwa-olin
-  secretName: env-web-pwa-olin
+  vmountName: secret-tbsi-demo-test-a
+  vmountPath: /.env
+  volumeName: secret-tbsi-demo-test-a
+  secretName: env-tbsi-demo-test-a
 
 restartPolicy: Always
 
