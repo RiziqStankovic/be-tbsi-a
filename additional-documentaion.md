@@ -40,9 +40,13 @@ The application is hosted on a Digital Ocean Kubernetes cluster. The Digital Oce
 
 To access the service, use the following URL:
 
-- Service URL: [Insert_Service_URL_Here](Insert_Service_URL_Here)
+- Service URL: 
+
+- Backend A: [https://backend-a.slimebox.my.id/](https://backend-a.slimebox.my.id/)
 
 ![Service Access](https://github.com/rahmaneffendi/tbsi-demo-test-a/assets/99697182/6c8c4688-0bc3-41fe-91ea-052eff7035b3)
+
+- Backend B: [https://backend-b.slimebox.my.id/](https://backend-b.slimebox.my.id/)
 
 ![Service Access](https://github.com/rahmaneffendi/tbsi-demo-test-a/assets/99697182/7ae4eddd-64e7-4d3f-a1e3-ee59757d95b1)
 
