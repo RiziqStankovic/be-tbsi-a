@@ -1,5 +1,3 @@
-Creating good documentation involves organizing and presenting information in a clear and structured manner. Based on the information you provided, here's a draft for documentation:
-
 # TBSI Demo Test A & B Documentation
 
 This documentation provides an overview of the TBSI Demo Test-A project, covering the tools and services used in its setup and how to access the services.
