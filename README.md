@@ -10,6 +10,18 @@ I have chosen Digital Ocean with Kubernetes as my hosting platform. This decisio
 
 my backend applications are built using Node.js. The source code is hosted on GitHub, ensuring version control and collaboration. I have rigorously tested these applications locally using Docker to ensure their functionality and reliability.
 
+## Accessing Backend Services
+
+You can access the backend services as follows:
+
+- Backend A: [https://backend-a.slimebox.my.id/](https://backend-a.slimebox.my.id/)
+- Backend B: [https://backend-b.slimebox.my.id/](https://backend-b.slimebox.my.id/)
+
+## Domain Name By iDCloudHost
+
+I Buy the Domain name in IDCloudHost as Domain Provider
+
+
 ## CI/CD Workflow with GitHub Actions
 
 To streamline the deployment process, I have implemented a comprehensive CI/CD workflow using GitHub Actions. This workflow comprises the following key steps:
