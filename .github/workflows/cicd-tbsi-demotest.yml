@@ -33,7 +33,7 @@ jobs:
         tags: ${{ secrets.DOCKER_USERNAME }}/backend-a:latest
         # tags: |
         #   ${{ secrets.DOCKER_USERNAME }}:latest
-        #   ${{ secrets.DOCKER_USERNAME }}:v1.0.-${{ github.run_number }}
+        #   ${{ secrets.DOCKER_USERNAME }}:v1.0.-100
         # build-args: |
         #   git_sha=${{ github.sha }}        
 
@@ -44,8 +44,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GIT_TOKEN }}
       with:
-        tag_name: development-${{ github.run_number }}
-        release_name: Release development-${{ github.run_number }}
+        tag_name: development-100
+        release_name: Release development-100
         body: |
           Commit: ${{ github.sha }}
           Author: ${{ github.actor }}
