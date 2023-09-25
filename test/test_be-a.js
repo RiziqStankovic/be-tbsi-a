@@ -6,13 +6,13 @@ chai.use(chaiHttp);
 const expect = chai.expect;
 
 describe('Backend A API', () => {
-  it('should respond with "Hello from Backend A, Versi 1.0.0!"', (done) => {
+  it('should respond with "Hello from Backend A, Versi 1.0.1!"', (done) => {
     chai
       .request(app)
       .get('/')
       .end((err, res) => {
         expect(res).to.have.status(200);
-        expect(res.text).to.equal('Hello from Backend A, Versi 1.0.0!');
+        expect(res.text).to.equal('Hello from Backend A, Versi 1.0.1!');
         done();
       });
   });
