@@ -1,0 +1,46 @@
+appName: be-tbsi-a
+
+image:
+  pullPolicy: Always
+  pullSecret: docker-hub-private
+  repository: ziq02/gw:be-tbsi-a-v1.0.5
+
+hpa:
+  name: be-tbsi-a
+  max: 3
+  min: 1
+  targetCPU: 60
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+  name: be-tbsi-a
+  host: be-tbsi-a.pharmaniaga.tech
+
+namespace: tbsi
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 50Mi
+
+secret:
+  vmountName: be-tbsi-a
+  vmountPath: /.env
+  volumeName: be-tbsi-a
+  secretName: env-tbsi-demo-test-a
+
+restartPolicy: Always
+
+service: 
+  externalPort: 8080
+  internalPort: 8080
+  name: be-tbsi-a
+  port: 8080
+  protocol: TCP
+  type: ClusterIP
+
+strategy:
+  surge: 1
+  type: RollingUpdate
+  unavailable: 25%
