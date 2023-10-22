@@ -28,15 +28,20 @@ jobs:
       #     password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
 
-      - name: Build and push
-        uses: docker/build-push-action@v4
-        with:
-          context: .
-          file: ./Dockerfile
-          platforms: linux/amd64
-          push: true
-          tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.TBSI_DOCKER }}:${{ vars.TBSI_TAGS }}${{ github.run_number }}
+      # - name: Build and push
+      #   uses: docker/build-push-action@v4
+      #   with:
+      #     context: .
+      #     file: ./Dockerfile
+      #     platforms: linux/amd64
+      #     push: true
+      #     tags: |
+      #       ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.TBSI_DOCKER }}:${{ vars.TBSI_TAGS }}${{ github.run_number }}
+
+      - name: Set BUILD and PUSH
+        run: |
+          cd ${{ vars.WORKDIR }}
+          sudo docker buildx build --load -t  ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.TBSI_DOCKER }}:${{ vars.TBSI_TAGS }}${{ github.run_number }} . && docker push  ${{ secrets.DOCKERHUB_USERNAME }}/${{ vars.TBSI_DOCKER }}:${{ vars.TBSI_TAGS }}${{ github.run_number }}
 
       - name: Deploy to Kubernetes 
         run: |
