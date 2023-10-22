@@ -21,8 +21,8 @@ Keterangan :
 
 You can access the backend services as follows:
 
-- Backend A: [https://be-tbsi-a.pharmaniaga.tech/](https://be-tbsi-a.pharmaniaga.tech/)  = [Repository be-tbsi-a](git@github.com:RiziqStankovic/be-tbsi-a.git )
-- Backend B: [https://be-tbsi-b.pharmaniaga.tech/](https://be-tbsi-b.pharmaniaga.tech/) =  [Repository be-tbsi-b](git@github.com:RiziqStankovic/be-tbsi-b.git )
+- Backend A: [https://be-tbsi-a.pharmaniaga.tech/](https://be-tbsi-a.pharmaniaga.tech/)  = [Repository be-tbsi-a](https://github.com/RiziqStankovic/be-tbsi-a.git )
+- Backend B: [https://be-tbsi-b.pharmaniaga.tech/](https://be-tbsi-b.pharmaniaga.tech/) =  [Repository be-tbsi-b](https://github.com/RiziqStankovic/be-tbsi-ab.git )
 
 ## Documentation of running service https
 
